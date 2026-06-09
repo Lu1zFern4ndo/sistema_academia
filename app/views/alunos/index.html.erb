@@ -5,6 +5,7 @@
 <h1>Alunos</h1>
 
 <div id="alunos">
+  
   <% @alunos.each do |aluno| %>
     <%= render aluno %>
     <p>
@@ -12,5 +13,5 @@
     </p>
   <% end %>
 </div>
-
+<%= paginate @alunos %>
 <%= link_to "New aluno", new_aluno_path %>

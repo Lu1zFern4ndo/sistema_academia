@@ -3,7 +3,7 @@ class AlunosController < ApplicationController
 
   # GET /alunos or /alunos.json
   def index
-    @alunos = Aluno.all
+    @alunos = Aluno.page(params[:page]).per(3)
   end
 
   # GET /alunos/1 or /alunos/1.json
