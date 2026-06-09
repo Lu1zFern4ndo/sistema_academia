@@ -71,3 +71,5 @@ gem "kaminari", "~> 1.2"
 
 gem "prawn", "~> 2.4"
 gem "prawn-table", "~> 0.2.2"
+
+gem "csv", "~> 3.3"

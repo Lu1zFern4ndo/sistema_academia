@@ -14,6 +14,10 @@ class AlunosController < ApplicationController
           type: "application/pdf",
           disposition: "inline"
       end
+        format.csv do
+          @todos_alunos = Aluno.all
+           send_data @todos_alunos.to_csv, filename: "lista_alunos.csv"
+        end
     end
   end
 

@@ -4,7 +4,7 @@
 
 <h1>Alunos</h1>
 <%= link_to "Gerar Relatório PDF", alunos_path(format: :pdf), class: "btn btn-danger mb-3", target: "_blank" %>
-
+<%= link_to "Gerar Arquivo CSV", alunos_path(format: :csv), class: "btn btn-success mb-3" %>
 <div id="alunos">
   
   <% @alunos.each do |aluno| %>
