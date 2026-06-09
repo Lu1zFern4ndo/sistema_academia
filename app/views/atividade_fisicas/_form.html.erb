@@ -1,0 +1,32 @@
+<%= form_with(model: atividade_fisica) do |form| %>
+  <% if atividade_fisica.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(atividade_fisica.errors.count, "error") %> prohibited this atividade_fisica from being saved:</h2>
+
+      <ul>
+        <% atividade_fisica.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nome, style: "display: block" %>
+    <%= form.text_field :nome %>
+  </div>
+
+  <div>
+    <%= form.label :descricao, style: "display: block" %>
+    <%= form.textarea :descricao %>
+  </div>
+
+  <div>
+    <%= form.label :valor_mensalidade, style: "display: block" %>
+    <%= form.text_field :valor_mensalidade %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
