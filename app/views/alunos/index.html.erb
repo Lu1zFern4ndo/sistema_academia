@@ -3,6 +3,7 @@
 <% content_for :title, "Alunos" %>
 
 <h1>Alunos</h1>
+<%= link_to "Gerar Relatório PDF", alunos_path(format: :pdf), class: "btn btn-danger mb-3", target: "_blank" %>
 
 <div id="alunos">
   

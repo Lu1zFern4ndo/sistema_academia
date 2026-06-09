@@ -68,3 +68,6 @@ end
 gem "devise", "~> 5.0"
 
 gem "kaminari", "~> 1.2"
+
+gem "prawn", "~> 2.4"
+gem "prawn-table", "~> 0.2.2"
