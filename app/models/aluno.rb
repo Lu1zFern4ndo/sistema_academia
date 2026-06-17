@@ -1,6 +1,7 @@
 require 'csv'
 class Aluno < ApplicationRecord
   has_many :pagamentos, dependent: :destroy
+  has_many :matriculas, dependent: :destroy
 
   validates :nome, presence: true
   validates :cpf, presence: true, uniqueness: true

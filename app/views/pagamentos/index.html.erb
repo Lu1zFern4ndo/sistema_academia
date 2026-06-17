@@ -18,7 +18,7 @@
     <% @pagamentos.each do |pagamento| %>
       <tr>
         <td><%= pagamento.aluno.nome if pagamento.aluno %></td>
-        <td><%= pagamento.valor %></td>
+        <td><%= pagamento.valor_pago%></td>
         <td>
           <%= link_to "Ver", pagamento, class: "btn btn-info btn-sm" %>
           <%= link_to "Editar", edit_pagamento_path(pagamento), class: "btn btn-warning btn-sm" %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_17_011524) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_17_014746) do
   create_table "alunos", force: :cascade do |t|
     t.string "cpf"
     t.datetime "created_at", null: false
@@ -42,6 +42,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_17_011524) do
     t.datetime "created_at", null: false
     t.date "data_pagamento"
     t.datetime "updated_at", null: false
+    t.decimal "valor"
     t.decimal "valor_pago"
     t.index ["aluno_id"], name: "index_pagamentos_on_aluno_id"
     t.index ["atividade_fisica_id"], name: "index_pagamentos_on_atividade_fisica_id"

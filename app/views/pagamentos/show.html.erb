@@ -1,10 +1,26 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @pagamento %>
-
-<div>
-  <%= link_to "Edit this pagamento", edit_pagamento_path(@pagamento) %> |
-  <%= link_to "Back to pagamentos", pagamentos_path %>
-
-  <%= button_to "Destroy this pagamento", @pagamento, method: :delete %>
+<div class="card mt-4 shadow-sm">
+  <div class="card-header bg-success text-white">
+    <h3 class="mb-0">Detalhes do Pagamento</h3>
+  </div>
+  
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <p class="card-text"><strong>Aluno:</strong> <%= @pagamento.aluno.nome if @pagamento.aluno %></p>
+        <p class="card-text"><strong>Atividade Física:</strong> <%= @pagamento.atividade_fisica.nome if @pagamento.atividade_fisica %></p>
+      </div>
+      <div class="col-md-6">
+        <p class="card-text"><strong>Valor Pago:</strong> <%= number_to_currency(@pagamento.valor, unit: "R$ ", separator: ",", delimiter: ".") %></p>
+        <p class="card-text"><strong>Data:</strong> <%= @pagamento.created_at.strftime("%d/%m/%Y") %></p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card-footer bg-light">
+    <%= link_to "Editar", edit_pagamento_path(@pagamento), class: "btn btn-warning" %>
+    <%= link_to "Voltar para a Lista", pagamentos_path, class: "btn btn-secondary ms-2" %>
+    <%= link_to "Apagar", @pagamento, data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja apagar este registro?" }, class: "btn btn-danger float-end" %>
+  </div>
 </div>

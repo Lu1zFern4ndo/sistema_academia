@@ -1,7 +1,8 @@
 <%= form_with(model: aluno) do |form| %>
   <% if aluno.errors.any? %>
-    <div class="alert alert-danger">
-      <h4>Opa! Encontramos <%= pluralize(aluno.errors.count, "erro", "erros") %>:</h4>
+    <div style="color: red">
+      <h2><%= pluralize(aluno.errors.count, "error") %> prohibited this aluno from being saved:</h2>
+
       <ul>
         <% aluno.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,23 +11,42 @@
     </div>
   <% end %>
 
-  <div class="mb-3">
-    <%= form.label :nome, class: "form-label fw-bold" %>
-    <%= form.text_field :nome, class: "form-control", placeholder: "Digite o nome completo" %>
+  <div>
+    <%= form.label :nome, style: "display: block" %>
+    <%= form.text_field :nome %>
   </div>
 
-  <div class="mb-3">
-    <%= form.label :cpf, "CPF", class: "form-label fw-bold" %>
-    <%= form.text_field :cpf, class: "form-control", placeholder: "Apenas números" %>
+  <div>
+    <%= form.label :cpf, style: "display: block" %>
+    <%= form.text_field :cpf, class: "form-control", placeholder: "Apenas números", oninput: "mascaraCPF(this)", maxlength: "14" %>
   </div>
 
-  <div class="mb-3">
-    <%= form.label :telefone, class: "form-label fw-bold" %>
-    <%= form.text_field :telefone, class: "form-control", placeholder: "(00) 00000-0000" %>
+  <div>
+    <%= form.label :telefone, style: "display: block" %>
+    <%= form.text_field :telefone, class: "form-control", placeholder: "(00) 00000-0000", oninput: "mascaraTelefone(this)", maxlength: "15" %>
   </div>
 
-  <div class="mt-4">
-    <%= form.submit "Salvar Aluno", class: "btn btn-success" %>
-    <%= link_to "Voltar", alunos_path, class: "btn btn-secondary ms-2" %>
+  <div>
+    <%= form.submit %>
   </div>
 <% end %>
+<script>
+  function mascaraCPF(campo) {
+    let v = campo.value.replace(/\D/g, ""); 
+    
+    v = v.replace(/(\d{3})(\d)/, "$1.$2");
+    v = v.replace(/(\d{3})(\d)/, "$1.$2");
+    v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    
+    campo.value = v;
+  }
+
+  function mascaraTelefone(campo) {
+    let v = campo.value.replace(/\D/g, "");
+    
+    v = v.replace(/^(\d{2})(\d)/g, "($1) $2");
+    v = v.replace(/(\d)(\d{4})$/, "$1-$2");
+    
+    campo.value = v;
+  }
+</script>
