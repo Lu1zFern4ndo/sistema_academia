@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_09_195608) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_17_011524) do
   create_table "alunos", force: :cascade do |t|
     t.string "cpf"
     t.datetime "created_at", null: false
@@ -25,6 +25,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_09_195608) do
     t.string "nome"
     t.datetime "updated_at", null: false
     t.decimal "valor_mensalidade"
+  end
+
+  create_table "matriculas", force: :cascade do |t|
+    t.integer "aluno_id", null: false
+    t.integer "atividade_fisica_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["aluno_id"], name: "index_matriculas_on_aluno_id"
+    t.index ["atividade_fisica_id"], name: "index_matriculas_on_atividade_fisica_id"
   end
 
   create_table "pagamentos", force: :cascade do |t|
@@ -50,6 +59,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_09_195608) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "matriculas", "alunos"
+  add_foreign_key "matriculas", "atividade_fisicas"
   add_foreign_key "pagamentos", "alunos"
   add_foreign_key "pagamentos", "atividade_fisicas"
 end

@@ -1,9 +1,7 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+puts "Cadastrando Atividades Físicas padrão..."
+
+AtividadeFisica.find_or_create_by!(nome: "Musculação", valor_mensalidade: 100.00)
+AtividadeFisica.find_or_create_by!(nome: "Pilates", valor_mensalidade: 150.00)
+AtividadeFisica.find_or_create_by!(nome: "Zumba", valor_mensalidade: 120.00)
+
+puts "Atividades cadastradas com sucesso!"

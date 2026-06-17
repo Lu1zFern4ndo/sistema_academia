@@ -1,16 +1,40 @@
 <%= form_with(model: pagamento) do |form| %>
   <div class="mb-3">
-    <%= form.label :aluno_id, "Vincular ao Aluno", class: "form-label fw-bold" %>
+    <%= form.label :aluno_id, "1. Selecionar o Aluno", class: "form-label fw-bold" %>
     <%= form.collection_select :aluno_id, Aluno.all, :id, :nome, { prompt: "Selecione um Aluno" }, { class: "form-select" } %>
   </div>
 
   <div class="mb-3">
-    <%= form.label :valor, class: "form-label fw-bold" %>
-    <%= form.text_field :valor, class: "form-control", placeholder: "R$ 0,00" %>
+    <%= form.label :atividade_fisica_id, "2. Atividade Física", class: "form-label fw-bold" %>
+    <%= form.collection_select :atividade_fisica_id, AtividadeFisica.all, :id, :nome, { prompt: "Escolha uma modalidade" }, { class: "form-select", id: "select_atividade", onchange: "atualizarValor()" } %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :valor, "3. Valor do Pagamento", class: "form-label fw-bold" %>
+    <%= form.text_field :valor, class: "form-control bg-light", id: "campo_valor", readonly: true, placeholder: "R$ 0.00" %>
   </div>
 
   <div class="mt-4">
-    <%= form.submit "Salvar Pagamento", class: "btn btn-success" %>
+    <%= form.submit "Salvar e Matricular", class: "btn btn-success" %>
     <%= link_to "Voltar", pagamentos_path, class: "btn btn-secondary ms-2" %>
   </div>
 <% end %>
+
+<script>
+  function atualizarValor() {
+    var select = document.getElementById("select_atividade");
+    var campoValor = document.getElementById("campo_valor");
+    var nomeAtividade = select.options[select.selectedIndex].text;
+
+    
+    if (nomeAtividade === "Musculação") {
+      campoValor.value = "100.00";
+    } else if (nomeAtividade === "CrossFit") {
+      campoValor.value = "150.00";
+    } else if (nomeAtividade === "Pilates") {
+      campoValor.value = "120.00";
+    } else {
+      campoValor.value = "";
+    }
+  }
+</script>
