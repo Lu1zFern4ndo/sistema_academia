@@ -5,12 +5,31 @@
 <h1>Pagamentos</h1>
 
 <div id="pagamentos">
-  <% @pagamentos.each do |pagamento| %>
-    <%= render pagamento %>
-    <p>
-      <%= link_to "Show this pagamento", pagamento %>
-    </p>
-  <% end %>
+  <table class="table table-striped table-hover mt-3">
+  <thead class="table-dark">
+    <tr>
+      <th>Aluno</th>
+      <th>Valor</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @pagamentos.each do |pagamento| %>
+      <tr>
+        <td><%= pagamento.aluno.nome if pagamento.aluno %></td>
+        <td><%= pagamento.valor %></td>
+        <td>
+          <%= link_to "Ver", pagamento, class: "btn btn-info btn-sm" %>
+          <%= link_to "Editar", edit_pagamento_path(pagamento), class: "btn btn-warning btn-sm" %>
+          <%= link_to "Apagar", pagamento, data: { turbo_method: :delete, turbo_confirm: "Tem certeza?" }, class: "btn btn-danger btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to "Novo Pagamento", new_pagamento_path, class: "btn btn-primary" %>
 </div>
 
-<%= link_to "New pagamento", new_pagamento_path %>
