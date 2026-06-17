@@ -1,10 +1,44 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @atividade_fisica %>
+<div class="card mt-4 shadow-sm border-info">
+  <div class="card-header bg-info text-white">
+    <h3 class="mb-0">Detalhes da Modalidade: <%= @atividade_fisica.nome %></h3>
+  </div>
+  
+  <div class="card-body">
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <p class="card-text"><strong>Descrição:</strong> <%= @atividade_fisica.descricao.presence || "Nenhuma descrição cadastrada." %></p>
+      </div>
+      <div class="col-md-6">
+        <p class="card-text"><strong>Valor Mensalidade:</strong> <%= number_to_currency(@atividade_fisica.valor_mensalidade, unit: "R$ ", separator: ",", delimiter: ".") %></p>
+      </div>
+    </div>
 
-<div>
-  <%= link_to "Edit this atividade fisica", edit_atividade_fisica_path(@atividade_fisica) %> |
-  <%= link_to "Back to atividade fisicas", atividade_fisicas_path %>
-
-  <%= button_to "Destroy this atividade fisica", @atividade_fisica, method: :delete %>
+    <h5 class="text-secondary border-bottom pb-2">Alunos Matriculados</h5>
+    
+    <% if @atividade_fisica.matriculas.any? %>
+      <div class="list-group mt-3">
+        <% @atividade_fisica.matriculas.map(&:aluno).uniq.compact.each do |aluno| %>
+          <div class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <strong><%= aluno.nome %></strong>
+              <small class="text-muted d-block"><%= aluno.telefone %></small>
+            </div>
+            <span class="badge bg-success rounded-pill">Ativo</span>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="alert alert-warning mt-3">
+        Nenhum aluno matriculado nesta modalidade ainda.
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="card-footer bg-light">
+    <%= link_to "Voltar para a Lista", atividade_fisicas_path, class: "btn btn-secondary" %>
+    <%= link_to "Editar Modalidade", edit_atividade_fisica_path(@atividade_fisica), class: "btn btn-warning ms-2" %>
+    <%= link_to "Apagar Modalidade", @atividade_fisica, data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir?" }, class: "btn btn-danger float-end" %>
+  </div>
 </div>

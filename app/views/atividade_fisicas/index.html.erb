@@ -1,16 +1,34 @@
 <p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Atividade fisicas" %>
-
-<h1>Atividade fisicas</h1>
-
-<div id="atividade_fisicas">
-  <% @atividade_fisicas.each do |atividade_fisica| %>
-    <%= render atividade_fisica %>
-    <p>
-      <%= link_to "Show this atividade fisica", atividade_fisica %>
-    </p>
-  <% end %>
+<div class="card mt-4 shadow-sm">
+  <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+    <h3 class="mb-0">Atividades Físicas</h3>
+    <%= link_to "Nova Modalidade", new_atividade_fisica_path, class: "btn btn-success btn-sm fw-bold" %>
+  </div>
+  
+  <div class="card-body p-0">
+    <table class="table table-striped table-hover mb-0">
+      <thead class="table-light">
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Valor Mensalidade</th>
+          <th class="text-center">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @atividade_fisicas.each do |atividade| %>
+          <tr>
+            <td class="align-middle fw-bold"><%= atividade.nome %></td>
+            <td class="align-middle"><%= atividade.descricao.presence || "Sem descrição" %></td>
+            <td class="align-middle"><%= number_to_currency(atividade.valor_mensalidade, unit: "R$ ", separator: ",", delimiter: ".") %></td>
+            <td class="align-middle text-center">
+              <%= link_to "Ver Alunos", atividade_fisica_path(atividade), class: "btn btn-info btn-sm text-white" %>
+              <%= link_to "Editar", edit_atividade_fisica_path(atividade), class: "btn btn-warning btn-sm" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-<%= link_to "New atividade fisica", new_atividade_fisica_path %>

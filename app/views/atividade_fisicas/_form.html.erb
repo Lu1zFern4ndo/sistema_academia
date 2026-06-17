@@ -1,8 +1,7 @@
 <%= form_with(model: atividade_fisica) do |form| %>
   <% if atividade_fisica.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(atividade_fisica.errors.count, "error") %> prohibited this atividade_fisica from being saved:</h2>
-
+    <div class="alert alert-danger">
+      <h4><%= pluralize(atividade_fisica.errors.count, "erro") %> impediram esta atividade de ser salva:</h4>
       <ul>
         <% atividade_fisica.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,22 +10,26 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :nome, style: "display: block" %>
-    <%= form.text_field :nome %>
+  <div class="mb-3">
+    <%= form.label :nome, "Nome da Modalidade", class: "form-label fw-bold" %>
+    <%= form.text_field :nome, class: "form-control", placeholder: "Ex: Musculação" %>
   </div>
 
-  <div>
-    <%= form.label :descricao, style: "display: block" %>
-    <%= form.textarea :descricao %>
+  <div class="mb-3">
+    <%= form.label :descricao, "Descrição (Opcional)", class: "form-label fw-bold" %>
+    <%= form.text_area :descricao, class: "form-control", rows: 3, placeholder: "Detalhes sobre o acesso e equipamentos..." %>
   </div>
 
-  <div>
-    <%= form.label :valor_mensalidade, style: "display: block" %>
-    <%= form.text_field :valor_mensalidade %>
+  <div class="mb-3">
+    <%= form.label :valor_mensalidade, "Valor da Mensalidade", class: "form-label fw-bold" %>
+    <div class="input-group">
+      <span class="input-group-text bg-light fw-bold">R$</span>
+      <%= form.text_field :valor_mensalidade, class: "form-control", placeholder: "0.00" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mt-4">
+    <%= form.submit "Salvar Atividade", class: "btn btn-success" %>
+    <%= link_to "Cancelar", atividade_fisicas_path, class: "btn btn-secondary ms-2" %>
   </div>
 <% end %>

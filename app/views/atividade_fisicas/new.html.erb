@@ -1,11 +1,13 @@
-<% content_for :title, "New atividade fisica" %>
-
-<h1>New atividade fisica</h1>
-
-<%= render "form", atividade_fisica: @atividade_fisica %>
-
-<br>
-
-<div>
-  <%= link_to "Back to atividade fisicas", atividade_fisicas_path %>
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card mt-4 shadow-sm border-success">
+      <div class="card-header bg-success text-white">
+        <h3 class="mb-0">Nova Modalidade</h3>
+      </div>
+      
+      <div class="card-body">
+        <%= render "form", atividade_fisica: @atividade_fisica %>
+      </div>
+    </div>
+  </div>
 </div>
