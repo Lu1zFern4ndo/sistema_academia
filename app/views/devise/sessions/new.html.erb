@@ -1,0 +1,39 @@
+<div class="row justify-content-center mt-5">
+  <div class="col-md-6 col-lg-4">
+    <div class="card shadow border-0 rounded-3">
+      <div class="card-header text-center text-white py-3" style="background-color: #212529;">
+        <h4 class="mb-0 fw-bold">Iniciar Sessão</h4>
+      </div>
+      
+      <div class="card-body p-4 bg-white">
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          
+          <div class="mb-3">
+            <%= f.label :email, "E-mail", class: "form-label fw-bold text-secondary" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "exemplo@email.com" %>
+          </div>
+
+          <div class="mb-4">
+            <%= f.label :password, "Senha", class: "form-label fw-bold text-secondary" %>
+            <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "******" %>
+          </div>
+
+          <% if devise_mapping.rememberable? %>
+            <div class="form-check mb-4">
+              <%= f.check_box :remember_me, class: "form-check-input" %>
+              <%= f.label :remember_me, "Lembrar os meus dados", class: "form-check-label text-muted" %>
+            </div>
+          <% end %>
+
+          <div class="d-grid">
+            <%= f.submit "Entrar", class: "btn btn-lg text-white fw-bold", style: "background-color: #212529;" %>
+          </div>
+        <% end %>
+      </div>
+      
+      <div class="card-footer text-center bg-light py-3">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>
