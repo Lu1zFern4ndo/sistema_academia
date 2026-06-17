@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "home#index"
+  root "alunos#index"
   devise_for :users
   resources :pagamentos
   resources :atividade_fisicas
